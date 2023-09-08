@@ -1,0 +1,72 @@
+{% extends 'store/basic.html' %}
+{% load static %}
+{% block prediction_page %}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Predicted Plant Disease </h4>
+
+
+    <h5 class="pb-1 mb-4">Plant </h5>
+
+    {% for plant in plant_object %}
+
+              <div class="row mb-5">
+                <div class="col-md">
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img class="card-img card-img-left" src="/{{plant.plant_model_image}}" alt="Card image" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">{{plant.Plants_name}}</h5>
+                          <p class="card-text">
+                            {{plant.Plant_discription}}
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               {% endfor %}
+
+
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <h5 class="card-header">Custom file input</h5>
+                    <div class="card-body demo-vertical-spacing demo-only-element">
+                      <div class="input-group">
+                        <form method="post" enctype="multipart/form-data" >
+
+                          {% csrf_token %}  
+                          {{ form.as_p }}  
+                        <label class="input-group-text" for="inputGroupFile01">Plant Name</label>
+                        <input type="text" placeholder="Type your plant name" class="form-control" id="inputGroupFile01" />
+                      </div>
+
+                      <div class="input-group">
+                        <label class="input-group-text" for="inputGroupFile01">Plant symptom</label>
+                        <input type="text" placeholder="Type plant symptom in short" class="form-control" id="inputGroupFile01" />
+                      </div>
+
+                      <div class="input-group">
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="inputGroupFile04"
+                          aria-describedby="inputGroupFileAddon04"
+                          aria-label="Upload"
+                        />
+                        <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04">Submit</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+ {% endblock prediction_page %}

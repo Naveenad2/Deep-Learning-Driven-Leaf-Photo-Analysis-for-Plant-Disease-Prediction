@@ -1,0 +1,123 @@
+{% extends 'store/basic.html' %}
+{% load static %}
+{% block plant_prediction %}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Upload your plant photo</h4>
+
+
+    <h5 class="pb-1 mb-4">Plant </h5>
+
+    {%if pre_flag == 1 %}
+
+    <div class="row mb-5">
+      <div class="col-md">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img class="card-img card-img-left" src="/{{obj.plant_image}}" alt="Card image" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><h3>Predicted diesease is:</h3><h1>{{diesease}}</h1></h5>
+                <p class="card-text">
+                  {{obj.plant_name}}
+                </p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    {% endif %}
+
+    {% for plant in plant_object %}
+
+              <div class="row mb-5">
+                <div class="col-md">
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img class="card-img card-img-left" src="/{{plant.plant_model_image}}" alt="Card image" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">{{plant.Plants_name}}</h5>
+                          <p class="card-text">
+                            {{plant.Plant_discription}}
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               {% endfor %}
+
+
+               {%if pre_flag != 1 %}
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <h5 class="card-header">Custom file input</h5>
+                    <div class="card-body demo-vertical-spacing demo-only-element">
+                      <form method="POST" enctype="multipart/form-data" >
+                        {% csrf_token %}  
+                          {{ form.as_p }}  
+
+                    <!-- <div class="input-group">
+                        
+                        <label class="input-group-text" for="inputGroupFile01">Plant Name</label>
+                        <input type="text" placeholder="Type your plant name" class="form-control" id="inputGroupFile01" />
+                      </div>
+
+                      <div class="input-group">
+                        <label class="input-group-text" for="inputGroupFile01">Plant symptom</label>
+                        <input type="text" placeholder="Type plant symptom in short" class="form-control" id="inputGroupFile01" />
+                      </div>
+
+                      <div class="input-group">
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="inputGroupFile04"
+                          aria-describedby="inputGroupFileAddon04"
+                          aria-label="Upload"
+                        />--> 
+                        <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04">Button</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              {% endif %}
+              {%if pre_flag == 1 %}
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <h5 class="card-header">More about the disease</h5>
+                    <div class="card-body demo-vertical-spacing demo-only-element">
+                      Severely infected leaves eventually turn yellow and drop, resulting in premature senescence of affected trees and predisposing them to winter injury. Defoliation year after year stresses trees and greatly reduces vigour. Damage to limbs caused by cankers from other disease - or wounds caused by insects, pruning and hail or winter injury - provide an entrance for the fungus to invade and become established. Fire blight cankers are often colonized by black rot fungus. Limb cankers first appear as reddish or pinkish, brown sunken areas in the bark (Figure 4-146). Cankers often remain small and superficial but sometimes enlarge up to 50 cm in length along the infected limb, killing and cracking the bark. As the canker ages, the wood shrinks and becomes black as the bark peels away from the infected area (Figure 4-147). Cankers on limbs cause the entire limb to die back. Severely cankered limbs are weakened to the point that they may break under heavy fruit loads. Infections on the main trunk, particularly on young trees, eventually girdle the tree resulting in premature death
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+
+
+
+              {% endif %}
+
+
+ {% endblock plant_prediction %}
